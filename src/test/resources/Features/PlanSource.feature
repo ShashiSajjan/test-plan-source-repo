@@ -23,7 +23,7 @@ Feature: Plansource Platform
     |location           |SCA                |
     |current_salary     | 20000             |
     |benefit_salary     | 10000             |
-   And User clicks on "New Hire Enrollment"
+    And User clicks on "New Hire Enrollment"
     And User clicks on "Get Started"
     And User click on Review My Family to fill depeendent details
     Then User click on Add Family Member button
