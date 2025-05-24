@@ -23,7 +23,7 @@ Feature: Plansource Platform
     |location           |SCA                |
     |current_salary     | 20000             |
     |benefit_salary     | 10000             |
-   And User clicks on "New Hire Enrollment"
+    And User clicks on "New Hire Enrollment"
     And User clicks on "Get Started"
     And User click on Review My Family to fill depeendent details
     Then User click on Add Family Member button
@@ -33,6 +33,6 @@ Feature: Plansource Platform
       |gender    |    Male   |
       |birthdate |  05/12/2001  |
       |relationship       |    Child             |
-    And User click on Medical Shops Plan and Available Plan
+     And User click on Medical Shops Plan and Available Plan
     Then Enroll Employee into Dental Benefits via API
     And Click on Admin and Proceed To Checkout
