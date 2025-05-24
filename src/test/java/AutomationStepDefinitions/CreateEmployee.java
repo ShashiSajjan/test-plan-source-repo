@@ -48,13 +48,6 @@ public class CreateEmployee {
                 WebElement input = inputElements.get(0);
                 ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});", input);
                 input.sendKeys(value);
-                // Click somewhere else on the page to close the calendar popup
-
-//                if(fieldId.equalsIgnoreCase("birthdate")){
-//                    Thread.sleep(300);
-//                    Actions actions = new Actions(driver);
-//                                        actions.sendKeys(Keys.ESCAPE).perform();}
-
             } else {
                 WebElement birthdateInput = driver.findElement(By.id("birthdate"));
                 birthdateInput.sendKeys(Keys.ESCAPE);
