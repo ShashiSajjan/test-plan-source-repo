@@ -51,8 +51,6 @@ public class CreateEmployee {
             } else {
                 WebElement birthdateInput = driver.findElement(By.id("birthdate"));
                 birthdateInput.sendKeys(Keys.ESCAPE);
-
-                driver.findElement(By.tagName("body")).click();
                 String selectXpath = String.format("//select[@id='%s']", fieldId);
                 List<WebElement> selectElements = driver.findElements(By.xpath(selectXpath));
                 if (!selectElements.isEmpty()) {
@@ -64,8 +62,6 @@ public class CreateEmployee {
                     System.out.println("No input or select element found with id: " + fieldId);
                 }
             }
-            WebElement saveButton = driver.findElement(By.xpath("//button[@id='btn_save']"));
-            cm.javaScriptClick(saveButton);
 
         }
 
@@ -124,14 +120,17 @@ public class CreateEmployee {
 
     @And("User click on Medical Shops Plan and Available Plan")
     public void userClickOnMedicalShopsPlanAndAvailablePlan() throws Exception {
+        Thread.sleep(2000);
         WebElement saveButton = driver.findElement(By.xpath(medicalShopsPlansXpath));
         cm.javaScriptClick(saveButton);
-        WebElement viewplanbtn = driver.findElement(By.xpath(viewPlanXpath));
-        cm.javaScriptClick(viewplanbtn);
+//        Thread.sleep(4000);
+//        WebElement viewplanbtn = driver.findElement(By.xpath(viewPlanXpath));
+//        cm.javaScriptClick(viewplanbtn);
+        Thread.sleep(4000);
         WebElement updateCartBtn = driver.findElement(By.xpath("//*[@id='updateCartBtn']"));
         cm.javaScriptClick(updateCartBtn);
-        WebElement tobenifitBTN = driver.findElement(By.xpath(" //*[@id=\"app\"]/section/section/div/div/main/div[2]/div/div/div[3]/a/i"));
-        cm.javaScriptClick(updateCartBtn);
+        WebElement tobenifitBTN = driver.findElement(By.xpath("//*[@id='app']/section/section/div/div/main/div[2]/div/div/div[3]/a/i"));
+        cm.javaScriptClick(tobenifitBTN);
     }
 
     @Then("Enroll Employee into Dental Benefits via API")
@@ -162,21 +161,21 @@ public class CreateEmployee {
 
     @And("Click on Admin and Proceed To Checkout")
     public void clickOnAdminAndProceedToCheckout() throws Exception {
-        WebElement saveButton = driver.findElement(By.xpath("//*[@id='toggleNavMenu]/span)"));
-        cm.javaScriptClick(saveButton);
+        WebElement menuButton = driver.findElement(By.xpath("//span[text()='Toggle navigation']"));
+        cm.javaScriptClick(menuButton);
         Thread.sleep(400);
-        WebElement updateCartBtn = driver.findElement(By.xpath("//*[@id='app']/section/nav/ul/li[5]/a/span"));
-        cm.javaScriptClick(updateCartBtn);
-        Thread.sleep(400);
-        WebElement updateCartBtns = driver.findElement(By.xpath("//*[@id='app']/section/nav/ul/li[5]/ul/li[3]/a/span"));
-        cm.javaScriptClick(updateCartBtns);
-        Thread.sleep(400);
+        WebElement adminButton = driver.findElement(By.xpath("//a[@data-submenu-key='admin']"));
+        cm.javaScriptClick(adminButton);
+        Thread.sleep(2000);
+        WebElement checkoutBtns = driver.findElement(By.xpath("//span[text()='Proceed to Checkout']"));
+        cm.javaScriptClick(checkoutBtns);
+        Thread.sleep(2000);
         WebElement updateCarts = driver.findElement(By.xpath("(//span[text()='Checkout'])[2]"));
         cm.javaScriptClick(updateCarts);
-        Thread.sleep(500);
+        Thread.sleep(5000);
         WebElement download = driver.findElement(By.xpath("//button[text()='Download']"));
         cm.javaScriptClick(download);
-
+        Thread.sleep(5000);
         String downloadPath = System.getProperty("user.dir") + "/downloads";
         String expectedFileName = "confirmation.pdf"; // update with your expected filename
         boolean downloaded = waitForFileToDownload(downloadPath, expectedFileName, 30);
@@ -201,12 +200,32 @@ public class CreateEmployee {
 
     @And("Click on Add New Employee")
     public void clickOnAddNewEmployee() {
-        WebElement createEmployeeLink = driver.findElement(By.xpath("//a[text()='Add a New Employee']"));
+        WebElement saveButton = driver.findElement(By.xpath("//a[text()='Add a New Employee']"));
+        try {
+            cm.javaScriptClick(saveButton);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    @And("User click on Empolyee details Save button")
+    public void userClickOnEmpolyeeDetailsSaveButton() {
+        WebElement createEmployeeLink = driver.findElement(By.xpath("//button[@id='btn_save']"));
         try {
             cm.javaScriptClick(createEmployeeLink);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
 
+    @And("User click on dependents Save button")
+    public void userClickOnDependentsSaveButton() {
+        WebElement createEmployeeLink = driver.findElement(By.xpath("//button[@id='btn_save']"));
+        try {
+            cm.javaScriptClick(createEmployeeLink);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }
