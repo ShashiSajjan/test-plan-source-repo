@@ -1,0 +1,12 @@
+{
+  "election": {
+    "coverage_level_id": 137,
+    "dependent_ids": [],
+    "org_plan_id": 319901188
+  },
+  "enrollment_context_type": "initial",
+  "include_benefits_in_response": true,
+  "include_related_coverage_changes": true,
+  "life_event_completed": false,
+  "org_benefit_id": 121137668
+}
